@@ -26,6 +26,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="" style="color:blue;font-size: large;">{{ user.username }}</a>
                 </li>
+                <li class="nav-item">
+                    <button class="btn-info btn-sm" onclick="location.href='/empProf/{{employee.eFname}}'">Profiles</button>
+                </li>
                 {% else %}
                 <li class="nav-item">
                     <a class="nav-link" href="">Login</a>
@@ -58,7 +61,7 @@
         <tbody>
             {% for employee in employees %}
             <tr>
-                <td>{{employee.eFname}}</td>
+                <td><strong>{{employee.eFname}}</strong></td>
                 <td>{{employee.eLname}}</td>
                 <td>{{employee.eCompany}}</td>
                 <td>{{employee.eEmail}}</td>
@@ -67,6 +70,7 @@
 
                     <button class="btn-danger btn-sm" onclick="location.href='/deleteEmp/{{employee.eFname}}'">Delete</button>
                     <button class="btn-success btn-sm" onclick="location.href='/editemp/{{employee.eFname}}'">Update</button>
+
                 </td>
             </tr>
             {% endfor %}

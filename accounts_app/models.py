@@ -42,3 +42,12 @@ class Project(models.Model):
     client_email=models.EmailField()
     client_phoneno=models.CharField(max_length=50)
     project_status=models.CharField(max_length=50,choices=PROJECT_CHOICE,default='status')
+
+class Empregistraion(models.Model):
+    First_name=models.CharField(primary_key='true',max_length=50,unique='true')
+    Last_name=models.CharField(max_length=50)
+    emp_email=models.EmailField()
+    emp_phoneno=models.CharField(max_length=50)
+    password=models.CharField(max_length=50)
+    re_password=models.CharField(max_length=50)
+

@@ -3,8 +3,8 @@ from django.conf import settings
 from django.shortcuts import redirect, render
 from django.contrib.auth.models import User,auth
 from django.contrib import messages
-from . models import PROJECT_CHOICE, Company,Employee,Project
-from . forms import CompanyForm,EmployeeForm,projectForm
+from . models import PROJECT_CHOICE, Company,Employee, Empregistraion,Project
+from . forms import CompanyForm, EmpRegForm,EmployeeForm,projectForm
 from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
 
@@ -74,7 +74,10 @@ def emp(request):
 @login_required()
 def showemp(request):
     employees = Employee.objects.all()
-    return render(request, "showemp.html", {'employees':employees})
+    context={
+        'employees':employees,
+    }
+    return render(request, "showemp.html", context)
 
 # To delete employee details
 def deleteEmp(request, eFname):
@@ -176,3 +179,69 @@ def deleteStatus(request,pk):
 
 
 
+#emp profile
+
+@login_required()
+def empProf(request):
+    profile=Employee.objects.filter()
+    context={
+        'profile':profile
+        }
+    return render(request,'employeepro.html',context)
+
+@login_required()
+def empProf1(request):
+    profile1=Employee.objects.filter(eCompany='turbolab')
+    context={
+        'profile1':profile1
+        }
+    return render(request,'employeepro2.html',context)
+
+
+@login_required()
+def empProf2(request):
+    profile2=Employee.objects.filter(eCompany='tcs')
+    context={
+        'profile2':profile2
+        }
+    return render(request,'employeepro3.html',context)
+
+
+# empolyee registeration
+# 
+
+def empReg(request):
+      if request.method == "POST":
+       form = EmpRegForm(request.POST)
+       if form.is_valid():
+
+            try:
+                request.session["ema"]= emp.emp_email
+                form.save()
+                return redirect("emplogin/")
+            except:
+                pass
+      else:
+        form = EmpRegForm()
+      return render(request,'emplyee_reg.html',{'form':form})
+
+def emplogin(request):
+    # user=Empregistraion.objects.all()
+    if request.method=="POST":
+        emailE=request.POST["email"]
+        password=request.POST["pwd"]
+        if Empregistraion.objects.filter(emp_email=emailE).exists():
+            emp=Empregistraion.objects.get(emp_email=emailE)
+            request.session["ema"]= emp.emp_email
+            return redirect('ViewEmpProfile')
+        else:
+            messages.info(request,"Incorrect username and password")
+    return render(request,'emp_login.html')
+
+def ViewEmpProfile(request):  
+    if request.method=="POST":
+        emailE=request.POST["email"]
+        password=request.POST["pwd"]
+    if Empregistraion.objects.filter(emp_email=emailE).exists():
+            emp=Empregistraion.objects.filter(emp_email=emailE)
+    return render(request,'viewprofile.html',{'emp':emp})

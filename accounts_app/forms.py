@@ -2,6 +2,7 @@ from django import forms
 from . models import Employee
 from . models import Company
 from . models import Project
+from . models import Empregistraion
 # This is for employee
 class EmployeeForm(forms.ModelForm):
     class Meta:
@@ -23,3 +24,13 @@ class projectForm(forms.ModelForm):
     class Meta:
         model=Project
         fields = "__all__"
+
+class EmpRegForm(forms.ModelForm):
+    class Meta:
+        model=Empregistraion
+        fields = "__all__"
+
+# class Emplogin(forms.ModelForm):
+#     class Meta:
+#         model=Emplogin
+#         fields = "__all__"

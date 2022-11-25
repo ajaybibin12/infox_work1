@@ -1,23 +1,26 @@
-<!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <title>{% block title %}Django Auth Tutorial{% endblock %}</title>
-    {% load static %}
-
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-
-    <link rel="stylesheet" type="text/css" href="{% static '/styles.css' %}">
+    <style>
+        .col-lg-8 {
+            margin-top: 10%;
+            margin-left: 10%;
+        }
+    </style>
 </head>
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand" href="#"><strong>INFOX TECHNOLOGIES</strong></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+    <span class="navbar-toggler-icon"></span>
+  </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 {% if user.is_authenticated %}
@@ -32,14 +35,9 @@
                 </li>
                 {% else %}
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'login' %}">Login</a>
+                    <a class="nav-link" href="">Login</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'empReg' %}">Register Here</a>
-                </li>
-
                 {% endif %}
-
             </ul>
             <form class="form-inline my-2 my-lg-0">
                 <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
@@ -47,20 +45,50 @@
             </form>
         </div>
     </nav>
-
-    <div class="container booking-form2">
-        <div class="first-info">
-            <div class="row justify-content-center">
-                <div class="col-8">
-                    <hr class="mt-16 mb-16">
-                    <main style="padding-bottom: 10%;">
-                        {% block content %} {% endblock %}
-
-
-                    </main>
+    <!------------------>
+    <div class="col-lg-8">
+        <div class="card mb-4">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <p class="mb-0">First Name</p>
+                    </div>
+                    <div class="col-sm-9">
+                        <p class="text-muted mb-0">Johnatan Smith</p>
+                    </div>
                 </div>
+                <hr>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <p class="mb-0">Last Name
+                        </p>
+                    </div>
+                    <div class="col-sm-9">
+                        <p class="text-muted mb-0">NAME LAST</p>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <p class="mb-0">Email</p>
+                    </div>
+                    <div class="col-sm-9">
+                        <p class="text-muted mb-0">(097) 234-5678</p>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <p class="mb-0">Mobile</p>
+                    </div>
+                    <div class="col-sm-9">
+                        <p class="text-muted mb-0">(098) 765-4321</p>
+                    </div>
+                </div>
+                <hr>
             </div>
         </div>
-    </div>
+
 </body>
-</html
+
+</html>

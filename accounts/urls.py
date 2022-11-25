@@ -21,7 +21,8 @@ from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',include('accounts_app.urls'))
+    path('',include('accounts_app.urls')),
+    
 ]
 #for Media Storage 
 if settings.DEBUG:
